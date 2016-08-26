@@ -807,19 +807,21 @@
 
         /**
          * return a formatted string of the current selection (using Moment.js if available)
+         * also formats string into week with day offsets if in week mode
          */
         toString: function(format)
         {
             if (this._o.pickWholeWeek && isDate(this._d)) {
-                let sunday = new Date(this._d.setDate(this._d.getDate() - this._d.getDay()));
-                let saturday = new Date(this._d.setDate(this._d.getDate() - this._d.getDay() + 6));
+
+                let firstWeekDay = new Date(this._d.setDate(this._d.getDate() - this._d.getDay() + this._o.firstDay));
+                let lastWeekDay = new Date(this._d.setDate(this._d.getDate() - this._d.getDay() + 6 + this._o.firstDay));
 
                 if (hasMoment) {
-                    return moment(sunday).format(format || this._o.format).concat(' - ', moment(saturday).format(format || this._o.format));
+                    return moment(firstWeekDay).format(format || this._o.format).concat(' - ', moment(lastWeekDay).format(format || this._o.format));
                 } else if (this._o.showTime) {
-                    return sunday.toString().concat(' - ', saturday.toString());
+                    return firstWeekDay.toString().concat(' - ', lastWeekDay.toString());
                 } else {
-                    return sunday.toDateString().concat(' - ', saturday.toDateString());
+                    return firstWeekDay.toDateString().concat(' - ', lastWeekDay.toDateString());
                 }
             } else {
                 if (!isDate(this._d)) {
