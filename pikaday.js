@@ -1233,7 +1233,6 @@
                 after -= 7;
             }
             cells += 7 - after;
-            debugger;
             var isWeekSelected = false;
 
             // Ensure we only compare date portion when deciding to show a date in picker
