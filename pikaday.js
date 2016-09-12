@@ -813,16 +813,16 @@
         {
             if (this._o.pickWholeWeek && isDate(this._d)) {
 
-                let firstWeekDay = new Date(this._d.setDate(this._d.getDate() - this._d.getDay() + this._o.firstDay));
-                let lastWeekDay = new Date(this._d.setDate(this._d.getDate() - this._d.getDay() + 6 + this._o.firstDay));
+                var firstWeekDay = new Date(this._d.setDate(this._d.getDate() - this._d.getDay() + this._o.firstDay));
+                var lastWeekDay = new Date(this._d.setDate(this._d.getDate() - this._d.getDay() + 6 + this._o.firstDay));
 
                 if (hasMoment) {
-                    return moment(firstWeekDay).format(format || this._o.format).concat(' - ', moment(lastWeekDay).format(format || this._o.format));
-                } else if (this._o.showTime) {
-                    return firstWeekDay.toString().concat(' - ', lastWeekDay.toString());
-                } else {
-                    return firstWeekDay.toDateString().concat(' - ', lastWeekDay.toDateString());
-                }
+                     return moment(sunday).format(format || this._o.format) + ' - ' + moment(saturday).format(format || this._o.format);
+                 } else if (this._o.showTime) {
+                     return sunday.toString() + ' - ' + saturday.toString();
+                 } else {
+                     return sunday.toDateString() + ' - ' + saturday.toDateString();
+                 }
             } else {
                 if (!isDate(this._d)) {
                     return '';
