@@ -817,11 +817,11 @@
                 var lastWeekDay = new Date(this._d.setDate(this._d.getDate() - this._d.getDay() + 6 + this._o.firstDay));
 
                 if (hasMoment) {
-                     return moment(sunday).format(format || this._o.format) + ' - ' + moment(saturday).format(format || this._o.format);
+                     return moment(firstWeekDay).format(format || this._o.format) + ' - ' + moment(lastWeekDay).format(format || this._o.format);
                  } else if (this._o.showTime) {
-                     return sunday.toString() + ' - ' + saturday.toString();
+                     return firstWeekDay.toString() + ' - ' + lastWeekDay.toString();
                  } else {
-                     return sunday.toDateString() + ' - ' + saturday.toDateString();
+                     return firstWeekDay.toDateString() + ' - ' + lastWeekDay.toDateString();
                  }
             } else {
                 if (!isDate(this._d)) {
